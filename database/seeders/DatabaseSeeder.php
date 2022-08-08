@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => "GILMER MATOS VILA",
-        //     'username' => "admin",
-        //     'password' => '$2y$10$79lFQuJfbngvyHBnNGszVeS1TDJq/RqgM2Y0wFvax/i113v2aBsAu', // admin
-        //     'rol' => 'Responsable' ]);
+        User::create([
+            'name' => "GILMER MATOS VILA",
+            'username' => "admin",
+            'password' => '$2y$10$79lFQuJfbngvyHBnNGszVeS1TDJq/RqgM2Y0wFvax/i113v2aBsAu', // admin
+            'rol' => 'Responsable' ]);
 
     }
 }

@@ -1,0 +1,75 @@
+@extends('layouts.main')
+
+@section('content')
+
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+
+    <div class="card">
+
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close"><i class="tim-icons icon-simple-remove"></i></button>
+              <span>
+                  @foreach ($errors->all() as $error)
+                      <li> {{ $error }}</li>
+                  @endforeach
+              </span>
+          </div>
+      @endif
+
+
+
+
+      <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6 text-left">
+              <h4 class="card-title">Editar asesor</h4>
+            </div>
+        </div>                
+      </div>
+
+      <div class="card-body">
+        
+        <!-- Custom Styled Validation -->
+        <form action="{{route('responsable.asesores.update', $asesor->id)}}" method="POST" class="row g-3 needs-validation" novalidate>
+          @csrf
+          @method('PUT')
+
+
+          <div class="form-group col-12">
+            <label for="nombres" class="form-label">Nombres</label>
+              <input type="text" class="form-control" name="nombres" value="@if(!old('nombres')){{$asesor->nombres}}@else{{old('nombres')}}@endif"  required>
+          </div> <!--End Input Nombre-->
+
+          <div class="form-group col-12">
+              <label for="apellidos" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" name="apellidos" value="@if(!old('apellidos')){{$asesor->apellidos}}@else{{old('apellidos')}}@endif"  required>
+          </div> <!--End Input Apellidos-->
+
+          <div class="form-group col-12">
+              <label for="dni" class="form-label">DNI</label>
+              <input type="text" class="form-control" name="dni" value="@if(!old('dni')){{$asesor->dni}}@else{{old('dni')}}@endif" required maxlength="8" minlength="8" title="Ingrese un DNI válido" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+          </div> <!--End Input DNI-->
+        
+          <div class="col-12 d-flex justify-content-center mt-4">
+              <a href="{{route('responsable.asesores.index')}}" class="btn btn-secondary m-2 " ><i class="fa fa-times"></i> Cancelar</a>
+
+
+              <button class="btn btn-primary m-2" type="submit"><i class="fa fa-save"></i> Guardar datos</button>
+          </div>
+
+
+          
+        </form><!-- End Form -->
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+@endsection

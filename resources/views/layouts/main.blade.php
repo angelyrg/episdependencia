@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}'">
+  {{-- <link rel="icon" type="image/png" href="{{asset('assets/img/logo_epis.png')}}'"> --}}
+  <link rel="shortcut icon" href="{{asset('assets/img/logo_epis.png')}}" type="image/x-icon">
   <title>
     Dependencia EPIS
   </title>
@@ -26,39 +27,88 @@
         <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="#" class="simple-text logo-normal">
+                  
                 {{Auth::user()->rol}}
                 </a>
             </div>
 
             @if (Auth::user()->rol == "Responsable")
-                <ul class="nav">
-                    <li>
-                        <a href="{{route('home')}}">
-                            <i class="fa fa-home"></i>
-                            <p>Información general</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('responsable.asesores.index')}}">
-                            <i class="tim-icons icon-single-02"></i>
-                            <p>Gestión de Asesores</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" >
-                            <i class="tim-icons icon-single-copy-04"></i>
-                            <p>Gestión de Proyectos</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-users"></i>
-                            <p>Ejecutores</p>
-                        </a>
-                    </li>
-                </ul>                
-            @else
-                
+              <ul class="nav">
+                <li>
+                    <a href="{{route('home')}}">
+                        <i class="fa fa-home"></i>
+                        <p>Información general</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('responsable.asesores.index')}}">
+                        <i class="tim-icons icon-single-02"></i>
+                        <p>Gestión de Asesores</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('responsable.proyectos.index')}}" >
+                        <i class="tim-icons icon-components"></i>
+                        <p>Gestión de Proyectos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('responsable.ejecutores.index')}}">
+                        <i class="fa fa-users"></i>
+                        <p>Ejecutores</p>
+                    </a>
+                </li>
+                <li>
+                  <a href="{{route('responsable.informes')}}" >
+                      <i class="tim-icons icon-single-copy-04"></i>
+                      <p>Gestión de entregables</p>
+                  </a>
+              </li> 
+              </ul>                
+            @elseif (Auth::user()->rol == "Asesor")
+              <ul class="nav">
+                <li>
+                    <a href="{{route('home')}}">
+                        <i class="fa fa-home"></i>
+                        <p>Información general</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('asesor.asesorados')}}">
+                        <i class="fa fa-users"></i>
+                        <p>Asesorados</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('asesor.informes')}}" >
+                        <i class="tim-icons icon-single-copy-04"></i>
+                        <p>Gestión de entregables</p>
+                    </a>
+                </li>                  
+              </ul>                
+            @elseif (Auth::user()->rol == "Ejecutor")
+              <ul class="nav">
+                  <li>
+                      <a href="{{route('home')}}">
+                          <i class="fa fa-home"></i>
+                          <p>Información general</p>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{route('ejecutor.proyecto')}}">
+                          <i class="tim-icons icon-components"></i>
+                          <p>Mi proyecto</p>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{route('ejecutor.informes.index')}}" >
+                          <i class="tim-icons icon-single-copy-04"></i>
+                          <p>Gestión de entregables</p>
+                      </a>
+                  </li>
+                  
+              </ul>                
+
             @endif
 
 
@@ -80,7 +130,10 @@
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="javascript:void(0)">EPIS</a>
+                    <a class="navbar-brand" href="javascript:void(0)">
+                      <img src="{{asset('assets/img/logo_epis.png')}}" alt="Logo EPIS" width="50px">
+                      EPIS
+                    </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -91,15 +144,22 @@
                 <div class="collapse navbar-collapse" id="navigation">
                     <ul class="navbar-nav ml-auto">
 
+                        <li class="search-bar input-group">
+                          <a  class="nav-link">
+                            <div class=" d-none d-lg-block d-xl-block"></div>
+                            {{Auth::user()->name}}
+                          </a>
+                        </li>
+
+
                         <li class="dropdown nav-item">
-                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                <div class="photo">
-                                    <img src="{{asset('assets/img/anime3.png')}}" alt="Profile Photo">
-                                </div>
-                                <b class="caret d-none d-lg-block d-xl-block"></b>
-                                <p class="d-lg-none">
-                                    Nombre user
-                                </p>
+                          
+                          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                              <div class="photo">
+                                  <img src="{{asset('assets/img/anime3.png')}}" alt="Profile Photo">
+                              </div>
+                              <b class="caret d-none d-lg-block d-xl-block"></b>
+                              
                             </a>
                             <ul class="dropdown-menu dropdown-navbar">
                                 

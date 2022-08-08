@@ -18,8 +18,8 @@ class Asesor extends Model
         return $this->hasOne(User::class);
     }
 
-    // public function asesorados(){
-    //     return $this->belongsToMany(Proyecto::class);
-    // }
+    public function asesorados(){
+        return $this->belongsToMany(Proyecto::class);
+    }
 
 }

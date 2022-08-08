@@ -37,37 +37,40 @@
         
         
                 <div class="col-md-4 offset-md-4 ">
-                    <div class="card p-5">   
-                        
-                        <div class="row d-flex justify-content-center">
-                            <img src="{{asset('assets/img/logo_epis.png')}}" width="80">
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <h3 class="card-title">Login</h3>
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <small>Ingrese su usuario y contraseña para iniciar sesión</small>
-                        </div>
-            
-            
-                        <form action="{{route('login')}}" method="post" class="form mt-3">
-                            @csrf
-                            <div class="form-group">
-                                <label for="">Usuario</label>
-                                <input type="text" name="username" class="form-control" required>
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="">Contraseña</label>
-                                <input type="password" name="password" class="form-control" required>
-                            </div>
-                
-                            <div class="form-group d-flex justify-content-center mt-5">
-                                <input type="submit" class="btn btn-primary" value="Iniciar sesión">
-                            </div>
-                        </form>
 
-                    </div>
+                  @include('layouts.alerts')
+
+                  <div class="card p-5">   
+                      
+                      <div class="row d-flex justify-content-center">
+                          <img src="{{asset('assets/img/logo_epis.png')}}" width="80">
+                      </div>
+                      <div class="row d-flex justify-content-center">
+                          <h3 class="card-title">Login</h3>
+                      </div>
+                      <div class="row d-flex justify-content-center">
+                          <small>Ingrese su usuario y contraseña para iniciar sesión</small>
+                      </div>
+          
+          
+                      <form action="{{route('login')}}" method="post" class="form mt-3">
+                          @csrf
+                          <div class="form-group">
+                              <label for="">Usuario</label>
+                              <input type="text" name="username" class="form-control" required>
+                          </div>
+              
+                          <div class="form-group">
+                              <label for="">Contraseña</label>
+                              <input type="password" name="password" class="form-control" required>
+                          </div>
+              
+                          <div class="form-group d-flex justify-content-center mt-5">
+                              <input type="submit" class="btn btn-primary" value="Iniciar sesión">
+                          </div>
+                      </form>
+
+                  </div>
                 </div>
             </div>
             

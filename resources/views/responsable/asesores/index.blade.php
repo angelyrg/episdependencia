@@ -3,7 +3,11 @@
 @section('content')
     
 <div class="row">
+
     <div class="col-md-12">
+                
+        @include('layouts.alerts')
+
         <div class="card ">
             <div class="card-header">
                 <div class="row">
@@ -44,7 +48,7 @@
                                         <td>{{$asesor->apellidos}}</td>
                                         <td>{{$asesor->dni}}</td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-warning btn-simple " ><i class="tim-icons icon-pencil"></i> Editar</a>
+                                            <a href="{{route('responsable.asesores.edit', $asesor->id)}}" class="btn btn-sm btn-warning btn-simple " ><i class="tim-icons icon-pencil"></i> Editar</a>
 
                                             <button type="button" class="btn btn-sm btn-danger btn-simple" data-toggle="modal" data-target="#modal-delete-{{$asesor->id}}">
                                                 <i class="tim-icons icon-trash-simple"></i> Eliminar
@@ -61,6 +65,11 @@
                 </div>
 
             </div>
+
+            <div class="card-footer">
+                {{ $asesores->links() }}
+            </div>
+
         </div>
     </div>
 </div>
