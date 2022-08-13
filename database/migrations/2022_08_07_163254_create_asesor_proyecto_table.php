@@ -22,9 +22,7 @@ class CreateAsesorProyectoTable extends Migration
             $table->unsignedBigInteger("asesor_id")->nullable();
             $table->foreign('asesor_id')->references('id')->on('asesors')->cascadeOnDelete();
 
-
-
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

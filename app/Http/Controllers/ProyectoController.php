@@ -6,12 +6,14 @@ use App\Models\Asesor;
 use App\Models\Ejecutor;
 use App\Models\Proyecto;
 use App\Models\User;
+use App\Traits\ProyectoTrait;
 use App\Traits\UserTrait;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller
 {
     use UserTrait;
+    use ProyectoTrait;
 
     public function __construct(){
         $this->middleware(['auth', 'auth.responsable']);
@@ -50,8 +52,14 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['presupuesto' => 'required|numeric', 'usuario'=>'unique:users', 'asesor_id'=>'required|exists:asesors,id', 'coasesor_id'=>'nullable|exists:asesors,id|different:asesor_id']);
-        //return $request;
+        $request->validate([
+            'presupuesto' => 'required|numeric', 
+            'usuario'=>'unique:users,username', 
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'asesor_id'=>'required|exists:asesors,id', 
+            'coasesor_id'=>'nullable|exists:asesors,id|different:asesor_id']);
+
 
         $user_added = $this->createUser($request->nombre_grupo,  $request->usuario,  $request->password,  'Ejecutor');
 
@@ -163,6 +171,10 @@ class ProyectoController extends Controller
     {
 
         $this->deleteUser($proyecto->user_id);
+
+        foreach ($proyecto->informes as $informe) {
+            $this->deleteInforme($informe->id);
+        }
 
         $proyecto->delete();
         return redirect()->route('responsable.proyectos.index')->with('success', 'Proyecto eliminado correctamente.'); 

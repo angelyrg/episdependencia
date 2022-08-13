@@ -210,8 +210,7 @@
             ©
             <script>
               document.write(new Date().getFullYear())
-            </script>Nombre curso <i class="tim-icons icon-heart-2"></i> by
-            <a href="#" >Equipo _Nombre Equipo_</a>
+            </script> Programación web <i class="tim-icons icon-heart-2"></i>
           </div>
         </div>
       </footer>
